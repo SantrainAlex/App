@@ -2,18 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Mobile from './views/mobile/index'
 import reportWebVitals from './reportWebVitals';
 import {isMobile} from "react-device-detect";
 // Import Main styles for this application
 import './scss/style.scss';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import Login from "./views/mobile/loginAndRegister/Login";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      {isMobile && <Mobile/>}
+      {isMobile && <Login/>}
       {!isMobile && <App />}
   </React.StrictMode>
 );
