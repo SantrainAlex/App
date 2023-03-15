@@ -7,10 +7,44 @@
   img {
     height: 10em;
   }
+
   Button{
     height: 3em;
     padding: 0 2em;
     border-radius: 10px;
-
+    background-color: #32817E;
+    border: #282c34 1px solid;
   }
+  .btnGo{
+    text-align: -webkit-center;
+
+    a{
+      height: 3em;
+      padding: 0.5em 2em;
+      border-radius: 10px;
+      background-color: #32817E;
+      border: #282c34 1px solid;
+      color: #282c34;
+      text-decoration: none;
+    }
+  }
+
+  form{
+    text-align: center;
+    text-align: -webkit-center;
+
+    Input{
+      margin: 2em;
+      width: 70%;
+    }
+    a{
+      color: #282c34;
+      display: block;
+      margin: 1em;
+    }
+    Button{
+      margin-top: 2em;
+    }
+  }
+
 }
