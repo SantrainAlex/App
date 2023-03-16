@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {isMobile} from "react-device-detect";
 // Import Main styles for this application
 import './scss/style.scss';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -11,6 +9,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import Mobile from "./views/mobile";
 import Login from "./views/mobile/loginAndRegister/Login";
+import Register from "./views/mobile/loginAndRegister/Register";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +17,7 @@ root.render(
           <Routes>
             <Route
                 path="/"
-                element={<Mobile/>}
+                element={<Register/>}
             />
             <Route
                 path="/Login"
