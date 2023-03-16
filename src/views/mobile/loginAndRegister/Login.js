@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const Login = () => {
     return(
-        <div className="mobile">
+        <div>
             <img src="img/drapeau-flandre.jpg" alt={'drapeau de la flandre'} className='m-5 mx-auto d-block' style={{borderRadius: 50}}/>
             <Form>
                 <FormGroup>

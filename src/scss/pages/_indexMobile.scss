@@ -1,4 +1,5 @@
-.mobile{
+.indexSite{
+  font-family: 'Merriweather';
   h1 {
     white-space: nowrap;
     text-align: center;
@@ -35,6 +36,14 @@
     Input{
       margin: 2em;
       width: 70%;
+      text-align: center;
+      background-color: #51A29E;
+    }
+    ::placeholder{
+      color: #fff;
+    }
+    :focus{
+      background-color: #51A29E;
     }
     a{
       color: #282c34;
