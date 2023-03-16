@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const Login = () => {
     return(
         <div className="mobile">
-            <img src="img/logo-archers.png" alt={'Archer'} className='m-5 mx-auto d-block'/>
+            <img src="img/drapeau-flandre.jpg" alt={'drapeau de la flandre'} className='m-5 mx-auto d-block' style={{borderRadius: 50}}/>
             <Form>
                 <FormGroup>
                     <Input
@@ -23,9 +23,9 @@ const Login = () => {
                     <Link to='/register'>
                         Inscription
                     </Link>
-                    <Button onClick={() => console.log('test')}>
-                        Go ->
-                    </Button>
+                    <div className="btnGo">
+                        <Link to="/Login">go! <div className='arrow'>-></div></Link>
+                    </div>
                 </FormGroup>
             </Form>
         </div>
