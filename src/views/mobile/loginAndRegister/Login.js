@@ -1,4 +1,5 @@
 import {Button, Form, FormGroup, Input} from "reactstrap";
+import {Link} from "react-router-dom";
 
 const Login = () => {
     return(
@@ -19,9 +20,9 @@ const Login = () => {
                     <a href='google.fr'>
                         Mot de passe oublié
                     </a>
-                    <a href='google.fr'>
+                    <Link to='/register'>
                         Inscription
-                    </a>
+                    </Link>
                     <Button onClick={() => console.log('test')}>
                         Go ->
                     </Button>
