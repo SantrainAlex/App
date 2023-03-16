@@ -1,4 +1,3 @@
-import {Button} from 'reactstrap';
 import {Link} from "react-router-dom";
 
 const Mobile = () => {
