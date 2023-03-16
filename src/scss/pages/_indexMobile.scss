@@ -5,27 +5,22 @@
     font-size: 1em;
   }
   img {
-    height: 10em;
+    height: 13em;
   }
 
-  Button{
-    height: 3em;
-    padding: 0 2em;
-    border-radius: 10px;
-    background-color: #32817E;
-    border: #282c34 1px solid;
-  }
   .btnGo{
     text-align: -webkit-center;
 
     a{
-      height: 3em;
-      padding: 0.5em 2em;
-      border-radius: 10px;
-      background-color: #32817E;
-      border: #282c34 1px solid;
-      color: #282c34;
+      padding: 1em 3em;
+      border-radius: 100px;
+      background-color: #3F817E;
+      color: #FFF;
       text-decoration: none;
+
+      .arrow{
+        display: contents;
+      }
     }
   }
 
