@@ -15,7 +15,6 @@ import Login from "./views/mobile/loginAndRegister/Login";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-      {isMobile &&
           <Routes>
             <Route
                 path="/"
@@ -26,8 +25,6 @@ root.render(
                 element={<Login/>}
             />
           </Routes>
-      }
-      {!isMobile && <App />}
   </BrowserRouter>
 );
 
