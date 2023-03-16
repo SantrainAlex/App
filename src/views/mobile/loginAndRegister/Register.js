@@ -1,4 +1,5 @@
-import {Button, Form, FormGroup, Input} from "reactstrap";
+import {Form, FormGroup, Input} from "reactstrap";
+import {Link} from "react-router-dom";
 
 const Register = () => {
     return(
@@ -18,13 +19,23 @@ const Register = () => {
                                 <Input
                                     name='DateOfBirth'
                                     placeholder='Date de Naissance'
-                                    type='date'
+                                    type="text"
+                                    onChange={(e) => console.log(e.target.value)}
+                                    onFocus={(e) => (e.target.type = "date")}
+                                    onBlur={(e) => (e.target.type = "text")}
                                 />
                                 <Input
                                     name='crew'
                                     placeholder='Tu es dans une équipe? si oui la quelle ?'
                                     type='select'
-                                />
+                                >
+
+                                    <option disabled>Tu es dans une équipe?</option>
+                                    <option>Non</option>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                </Input>
                                 <Input
                                     name='email'
                                     placeholder='Ton adresse email'
@@ -40,9 +51,9 @@ const Register = () => {
                                     placeholder='Confirme ton  mot de passe'
                                     type='ConfirmPassword'
                                 />
-                                <Button onClick={() => console.log('test')}>
-                                    Go ->
-                                </Button>
+                                <div className="btnGo">
+                                    <Link to="/Login">go! <div className='arrow'>-></div></Link>
+                                </div>
                         </FormGroup>
                 </Form>
         </div>
