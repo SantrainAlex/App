@@ -107,11 +107,11 @@ const Register = () => {
                                     required
                                 >
 
-                                    <option disabled>Tu es dans une équipe?</option>
-                                    <option>Non</option>
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
+                                    <option>Tu es dans une équipe?</option>
+                                    <option value='Non'>Non</option>
+                                    <option value='A'>A</option>
+                                    <option value='B'>B</option>
+                                    <option value='C'>C</option>
                                 </Input>
                                 </FormGroup>
                                 <FormGroup>
