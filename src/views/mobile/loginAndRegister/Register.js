@@ -48,8 +48,7 @@ const Register = () => {
                 "email": `${values.email}`,
                 "password": `${values.password}`,
             }
-            console.log('Valeurs du formulaires', getData);
-            User.create(values)
+            User.create(getData)
                 .then(() => {
                     alert('Enregistrement Ok')
                 })
