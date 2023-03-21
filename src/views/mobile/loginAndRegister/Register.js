@@ -2,6 +2,7 @@ import {Form, FormGroup, Input, Button} from "reactstrap";
 import {useState} from "react";
 
 import * as User from "../../../servives/user";
+import {hashString} from "react-hash-string";
 
 const Register = () => {
     const [values, setValues] = useState({
@@ -46,7 +47,7 @@ const Register = () => {
                 "dateOfBirth": `${values.dateOfBirth}`,
                 "crew": `${values.crew}`,
                 "email": `${values.email}`,
-                "password": `${values.password}`,
+                "password": `${hashString(values.password)}`,
             }
             User.create(getData)
                 .then(() => {
