@@ -7,7 +7,7 @@ import './scss/style.scss';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.css';
-import Mobile from "./views/mobile";
+import HomePage from "./views/mobile/homePage/HomePage";
 import Login from "./views/mobile/loginAndRegister/Login";
 import Register from "./views/mobile/loginAndRegister/Register";
 
@@ -17,7 +17,7 @@ root.render(
           <Routes>
             <Route
                 path="/"
-                element={<Mobile/>}
+                element={<HomePage/>}
             />
             <Route
                 path="/Login"

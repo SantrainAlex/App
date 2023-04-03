@@ -1,5 +1,5 @@
 import {Button, Form, FormGroup, Input} from "reactstrap";
-import {Link} from "react-router-dom";
+import {Link, redirect} from "react-router-dom";
 import {useState} from "react";
 
 import * as User from "../../../servives/user";
@@ -21,7 +21,7 @@ const Login = () => {
         }
         User.connection(getData)
             .then(() => {
-                alert('connecter')
+                redirect('/HomePage')
             })
             .catch(error => {
                 alert('Appeler Alexis')
