@@ -7,9 +7,9 @@ import './scss/style.scss';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.css';
-import HomePage from "./views/mobile/homePage/HomePage";
 import Login from "./views/mobile/loginAndRegister/Login";
 import Register from "./views/mobile/loginAndRegister/Register";
+import Index from "./views/mobile";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +17,7 @@ root.render(
           <Routes>
             <Route
                 path="/"
-                element={<HomePage/>}
+                element={<Index/>}
             />
             <Route
                 path="/Login"

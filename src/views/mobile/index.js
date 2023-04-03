@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const Mobile = () => {
+const Index = () => {
     return(
         <div className="mobile">
             <img src="img/Saint-Sébastien_Saint_Sylvestre_Cappel.png" alt={'Blason Saint-Sébastien Saint_Sylvestre_Cappel'} className='m-5 mx-auto d-block'/>
@@ -12,4 +12,4 @@ const Mobile = () => {
         )
 }
 
-export default Mobile;
+export default Index;
