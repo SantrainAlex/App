@@ -8,6 +8,4 @@ export const connection = data => fetch('https://api-lkqs.onrender.com/customers
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(data),
-})
-    .then(response => response.json())
-    .catch(error => console.error(error));
+});
