@@ -3,6 +3,7 @@ import {Button, Form, FormGroup, Input} from "reactstrap";
 import {Link, useNavigate} from "react-router-dom";
 
 import * as User from "../../../servives/user";
+import SpinnerIcon from "../../../components/Loading/Spiner";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Login = () => {
                                              email: '',
                                              password: '',
                                          });
+    const [loaded, setLoaded] = useState(false)
 
 
 
@@ -22,6 +24,7 @@ const Login = () => {
 
 
     const handleSubmit =  (e) =>{
+        setLoaded(true);
         e.preventDefault()
         const getData =
         {
@@ -30,15 +33,22 @@ const Login = () => {
         }
         User.connection(getData)
             .then(() => {
+                setLoaded(false)
                      navigate('/HomePage');
                 }
             )
             .catch(error => {
+                setLoaded(false)
                 alert('Mot de passe ou email incorrect')
             })
     }
         return(
             <div>
+                {loaded && (
+                    <div>
+                        <SpinnerIcon text='Chargement en cours' />
+                    </div>
+                )}
                 <img src="img/drapeau-flandre.jpg" alt={'drapeau de la flandre'} className='m-5 mx-auto d-block' style={{borderRadius: 50}}/>
                 <Form>
                     <FormGroup>

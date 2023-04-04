@@ -1,8 +1,9 @@
 import {Form, FormGroup, Input, Button} from "reactstrap";
-import {useState} from "react";
+import React, {useState} from "react";
 
 import * as User from "../../../servives/user";
 import {useNavigate} from "react-router-dom";
+import SpinnerIcon from "../../../components/Loading/Spiner";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Register = () => {
     const [confirmPassword , setConfirmPassword] = useState('');
     const [passwordNotIdentical, setPasswordNotIdentical] = useState(false);
     const [tooShort , setTooShort] = useState(false);
+    const [loaded, setLoaded] = useState(false)
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -28,6 +30,7 @@ const Register = () => {
     }
 
     const handleSubmit = (event) => {
+        setLoaded(true);
         event.preventDefault();
         const form = event.currentTarget;
         setPasswordNotIdentical(false);
@@ -52,9 +55,11 @@ const Register = () => {
             }
             User.create(getData)
                 .then(() => {
+                    setLoaded(false)
                     navigate('/HomePage');
                 })
                 .catch(error => {
+                    setLoaded(false)
                     alert(error)
                 })
         }
@@ -63,6 +68,11 @@ const Register = () => {
 
     return(
         <div className='mobile'>
+            {loaded && (
+                <div>
+                    <SpinnerIcon text='Chargement en cours' />
+                </div>
+            )}
                 <Form onSubmit={handleSubmit} noValidate>
                         <FormGroup>
                                 <Input
