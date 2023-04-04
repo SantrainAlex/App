@@ -2,8 +2,10 @@ import {Form, FormGroup, Input, Button} from "reactstrap";
 import {useState} from "react";
 
 import * as User from "../../../servives/user";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -50,7 +52,7 @@ const Register = () => {
             }
             User.create(getData)
                 .then(() => {
-                    alert('Enregistrement Ok')
+                    navigate('/HomePage');
                 })
                 .catch(error => {
                     alert(error)

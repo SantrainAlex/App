@@ -12,6 +12,18 @@
   .btnGo{
     text-align: -webkit-center;
 
+    a{
+      padding: 1em 3em;
+      border-radius: 100px;
+      background-color: #3F817E;
+      color: #FFF;
+      text-decoration: none;
+
+      .arrow{
+        display: contents;
+      }
+    }
+
     Button{
       padding: 1em 3em;
       border-radius: 100px;
