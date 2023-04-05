@@ -4,6 +4,7 @@ import { ref,listAll,uploadBytesResumable, getDownloadURL } from "firebase/stora
 import Carousel from 'react-bootstrap/Carousel';
 import {storage} from "../../../firebase";
 import {Col, Row} from "reactstrap";
+import moment from 'moment';
 
 
 class HomePage extends React.Component{
@@ -20,7 +21,9 @@ class HomePage extends React.Component{
         this.onLoad();
     }
     onLoad = () => {
-        const imagesRef = ref(storage,'gs://tirssc-aa2ef.appspot.com/2023/04/');
+        const currentMonth = moment().format('MM');
+        const currentYear = moment().format('YYYY');
+        const imagesRef = ref(storage,`gs://tirssc-aa2ef.appspot.com/${currentYear}/${currentMonth}/`);
         listAll(imagesRef)
             .then((res) => {
                 const urls = res.items.map((itemRef) => {
@@ -38,12 +41,14 @@ class HomePage extends React.Component{
 
     capturePhoto = () => {
         const input = document.createElement("input");
+        const currentMonth = moment().format('MM');
+        const currentYear = moment().format('YYYY');
         input.type = 'file';
         input.accept = 'image/*';
         input.capture = 'camera';
         input.onchange = event =>{
             const photo = event.target.files[0];
-            const storageRef = ref(storage, `gs://tirssc-aa2ef.appspot.com/2023/04/${photo.name}`);
+            const storageRef = ref(storage, `gs://tirssc-aa2ef.appspot.com/${currentYear}/${currentMonth}/${photo.name}`);
             const uploadTask = uploadBytesResumable(storageRef, photo);
 
             uploadTask.on(
