@@ -28,7 +28,7 @@ const Login = () => {
         User.connection(getData)
             .then(() => {
                 setLoaded(false)
-                     navigate('/_homePage.scss');
+                     navigate('/HomePage');
                 }
             )
             .catch(error => {
