@@ -1,5 +1,5 @@
 import {Form, FormGroup, Input, Button} from "reactstrap";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import * as User from "../../../servives/user";
 import {useNavigate} from "react-router-dom";
@@ -15,10 +15,18 @@ const Register = () => {
         email: '',
         password: '',
     });
+    const [clicked, setClicked] = useState(false);
+
     const [confirmPassword , setConfirmPassword] = useState('');
     const [passwordNotIdentical, setPasswordNotIdentical] = useState(false);
     const [tooShort , setTooShort] = useState(false);
     const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+        if(values.dateOfBirth === ""){
+            setClicked(false);
+        }
+    }, [values.dateOfBirth])
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -92,19 +100,20 @@ const Register = () => {
                                     type='text'
                                     value={values.lastName}
                                     onChange={handleChange}
+                                    onClick={() => setClicked(true)}
                                     required
                                 />
                                 <div className="invalid-feedback">Veuillez saisir votre Nom.</div>
                                 </FormGroup>
                                 <FormGroup>
+                                    {!clicked &&<label for='dateOfBirth' style={{zIndex: 1000, position: "absolute", marginLeft: '-4em', color: "white", marginTop:'0.5em'}}>Date de Naissance</label>}
                                 <Input
+                                    id='dateOfBirth'
                                     name='dateOfBirth'
-                                    placeholder='Date de Naissance'
-                                    type="text"
-                                    onFocus={(e) => (e.target.type = "date")}
-                                    onBlur={(e) => (e.target.type = "text")}
+                                    type='date'
                                     value={values.dateOfBirth}
                                     onChange={handleChange}
+                                    onClick={() => setClicked(true)}
                                     required
                                 />
                                 <div className="invalid-feedback">Veuillez saisir votre Date de Naissance.</div>
