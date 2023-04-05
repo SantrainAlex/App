@@ -5,6 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import {storage} from "../../../firebase";
 import {Col, Row} from "reactstrap";
 import moment from 'moment';
+import SpinnerIcon from "../../../components/Loading/Spiner";
 
 
 class HomePage extends React.Component{
@@ -14,6 +15,7 @@ class HomePage extends React.Component{
             imageUrls: [],
             file: false,
             percent: 0,
+            loaded: false,
         }
     }
 
@@ -40,6 +42,7 @@ class HomePage extends React.Component{
     }
 
     capturePhoto = () => {
+        this.setState({loaded: true})
         const input = document.createElement("input");
         const currentMonth = moment().format('MM');
         const currentYear = moment().format('YYYY');
@@ -65,7 +68,7 @@ class HomePage extends React.Component{
                 () => {
                     // download url
                     getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                        console.log(url);
+                        this.setState({loaded: false})
                         this.onLoad();
                     });
                 }
@@ -74,6 +77,7 @@ class HomePage extends React.Component{
         input.click();
     }
     FileUploader = (e) => {
+            this.setState({loaded: true})
             const newFiles = Array.from(e.target.files);
 
             for (let i = 0; i < newFiles.length; i++) {
@@ -93,7 +97,7 @@ class HomePage extends React.Component{
                     () => {
                         // download url
                         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                            console.log(url);
+                            this.setState({loaded: false})
                             this.onLoad();
                         });
                     }
@@ -106,6 +110,11 @@ class HomePage extends React.Component{
     render() {
         return (
             <div className='homePage'>
+                {this.state.loaded && (
+                    <div>
+                        <SpinnerIcon text='Chargement en cours' />
+                    </div>
+                )}
                 <div>
                     <h1>Tir du jour</h1>
                     <p>carousel</p>
