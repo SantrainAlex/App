@@ -7,14 +7,8 @@ import SpinnerIcon from "../../../components/Loading/Spiner";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [values, setValues] = useState({
-
-                                             email: '',
-                                             password: '',
-                                         });
+    const [values, setValues] = useState({email: '',password: ''});
     const [loaded, setLoaded] = useState(false)
-
-
 
 
     const handleChange = (event) => {
@@ -34,7 +28,7 @@ const Login = () => {
         User.connection(getData)
             .then(() => {
                 setLoaded(false)
-                     navigate('/HomePage');
+                     navigate('/_homePage.scss');
                 }
             )
             .catch(error => {
