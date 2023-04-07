@@ -7,6 +7,7 @@ import {Col, Row} from "reactstrap";
 import moment from 'moment';
 import SpinnerIcon from "../../../components/Loading/Spiner";
 import * as celebrationAndBirthday from "../../../servives/celebration";
+import * as User from "../../../servives/user";
 
 
 class HomePage extends React.Component{
@@ -26,13 +27,27 @@ class HomePage extends React.Component{
         this.getDataCelebration();
     }
     getDataCelebration = async () => {
-        const currentData = []
-        const response =  await (await celebrationAndBirthday.celebration('2023')).json();
-        console.log(response);
-        const currentCelebration = response[moment().format('YYYY-MM-DD').toString()];
-        if (currentCelebration){
-            currentData.push(currentCelebration)
+        try {
+            //Celebration
+            const currentData = []
+            const response =  await (await celebrationAndBirthday.celebration('2023')).json();
+            const currentCelebration = response[moment().format('YYYY-MM-DD').toString()];
+            if (currentCelebration){
+                currentData.push(currentCelebration)
+            }
+            //BirthDay
+            const BirthDay = await (await User.getBirthDayCustomer()).json().catch(e => console.log(e));
+
+            if(BirthDay){
+                BirthDay.map(el => {
+                    return currentData.push(`Joyeux Anniversaire : ${el.firstName}`)
+                })
+            }
+            this.setState({dataCelebration: currentData})
+        } catch (e) {
+            console.log(e)
         }
+
 
     }
     onLoad = () => {
@@ -135,8 +150,16 @@ class HomePage extends React.Component{
                     <p>carousel</p>
                 </div>
                 <div>
-                    <h1>Fête et anniversaire du jour</h1>
-                    <p>caroussel</p>
+                    {this.state.dataCelebration && <>
+                        <h1>Fête et anniversaire du jour</h1>
+                        <Carousel className='text-center' controls={false} indicators={false}>
+                            {this.state.dataCelebration.map(( text ) => (
+                                <Carousel.Item key={text}>
+                                    <p>{text}</p>
+                                </Carousel.Item>
+                            ))}
+                        </Carousel>
+                    </>}
                 </div>
                 <div>
                     <h1>Photo du mois</h1>

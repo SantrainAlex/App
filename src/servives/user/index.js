@@ -9,3 +9,5 @@ export const connection = data => fetch('https://api-lkqs.onrender.com/customers
     },
     body: JSON.stringify(data),
 });
+
+export const getBirthDayCustomer = () => fetch(`https://api-lkqs.onrender.com/customers`);
