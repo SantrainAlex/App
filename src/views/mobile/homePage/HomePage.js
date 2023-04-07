@@ -79,8 +79,10 @@ class HomePage extends React.Component{
     FileUploader = (e) => {
             this.setState({loaded: true})
             const newFiles = Array.from(e.target.files);
+            console.log(newFiles)
 
             for (let i = 0; i < newFiles.length; i++) {
+                console.log(i);
                 const storageRef = ref(storage,`gs://tirssc-aa2ef.appspot.com/2023/04/${newFiles[i].name}`);
                 const uploadTask = uploadBytesResumable(storageRef, newFiles[i]);
                 uploadTask.on(
@@ -144,7 +146,7 @@ class HomePage extends React.Component{
                                 type="file"
                                 multiple
                                 accept=".jpg"
-                                onClick={this.FileUploader}
+                                onChange={this.FileUploader}
                                 style={{ display: 'none' }}
                             />
                             <button onClick={() => document.getElementById('file-input').click()}>
