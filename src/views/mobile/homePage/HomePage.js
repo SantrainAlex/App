@@ -6,6 +6,7 @@ import {storage} from "../../../firebase";
 import {Col, Row} from "reactstrap";
 import moment from 'moment';
 import SpinnerIcon from "../../../components/Loading/Spiner";
+import * as celebrationAndBirthday from "../../../servives/celebration";
 
 
 class HomePage extends React.Component{
@@ -16,11 +17,23 @@ class HomePage extends React.Component{
             file: false,
             percent: 0,
             loaded: false,
+            dataCelebration: []
         }
     }
 
     componentDidMount(){
         this.onLoad();
+        this.getDataCelebration();
+    }
+    getDataCelebration = async () => {
+        const currentData = []
+        const response =  await (await celebrationAndBirthday.celebration('2023')).json();
+        console.log(response);
+        const currentCelebration = response[moment().format('YYYY-MM-DD').toString()];
+        if (currentCelebration){
+            currentData.push(currentCelebration)
+        }
+
     }
     onLoad = () => {
         const currentMonth = moment().format('MM');
