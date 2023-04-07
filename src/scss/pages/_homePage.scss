@@ -1,8 +1,11 @@
 .homePage{
   .allBtn{
     text-align: center;
-    margin-top: 14em;
+    margin-top: 13em;
 
+    .row{
+      margin: 0;
+    }
     Button {
       padding: 1em 1em;
       border-radius: 100px;

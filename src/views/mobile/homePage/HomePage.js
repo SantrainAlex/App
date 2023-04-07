@@ -157,8 +157,6 @@ class HomePage extends React.Component{
                             <button onClick={this.capturePhoto}>prend une photo</button>
                         </Col>
                     </Row>
-
-
                 </div>
 
             </div>
