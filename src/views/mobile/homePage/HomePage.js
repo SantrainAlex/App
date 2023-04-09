@@ -70,7 +70,6 @@ class HomePage extends React.Component{
     }
 
     capturePhoto = () => {
-        this.setState({loaded: true})
         const input = document.createElement("input");
         const currentMonth = moment().format('MM');
         const currentYear = moment().format('YYYY');
@@ -78,6 +77,7 @@ class HomePage extends React.Component{
         input.accept = 'image/*';
         input.capture = 'camera';
         input.onchange = event =>{
+            this.setState({loaded: true});
             const photo = event.target.files[0];
             const storageRef = ref(storage, `gs://tirssc-aa2ef.appspot.com/${currentYear}/${currentMonth}/${photo.name}`);
             const uploadTask = uploadBytesResumable(storageRef, photo);
@@ -110,7 +110,6 @@ class HomePage extends React.Component{
             console.log(newFiles)
 
             for (let i = 0; i < newFiles.length; i++) {
-                console.log(i);
                 const storageRef = ref(storage,`gs://tirssc-aa2ef.appspot.com/2023/04/${newFiles[i].name}`);
                 const uploadTask = uploadBytesResumable(storageRef, newFiles[i]);
                 uploadTask.on(
