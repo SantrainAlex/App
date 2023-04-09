@@ -181,7 +181,6 @@ class HomePage extends React.Component{
                                 id="file-input"
                                 multiple
                                 type="file"
-                                multiple
                                 accept=".jpg"
                                 onChange={this.FileUploader}
                                 style={{ display: 'none' }}
