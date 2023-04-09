@@ -179,6 +179,7 @@ class HomePage extends React.Component{
                         <Col className='col-6'>
                             <input
                                 id="file-input"
+                                multiple
                                 type="file"
                                 multiple
                                 accept=".jpg"
