@@ -107,10 +107,11 @@ class HomePage extends React.Component{
     FileUploader = (e) => {
             this.setState({loaded: true})
             const newFiles = Array.from(e.target.files);
-            console.log(newFiles)
+            const currentMonth = moment().format('MM');
+            const currentYear = moment().format('YYYY');
 
             for (let i = 0; i < newFiles.length; i++) {
-                const storageRef = ref(storage,`gs://tirssc-aa2ef.appspot.com/2023/04/${newFiles[i].name}`);
+                const storageRef = ref(storage,`gs://tirssc-aa2ef.appspot.com/${currentYear}/${currentMonth}/${newFiles[i].name}`);
                 const uploadTask = uploadBytesResumable(storageRef, newFiles[i]);
                 uploadTask.on(
                     "state_changed",
