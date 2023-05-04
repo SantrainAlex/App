@@ -8,6 +8,7 @@ import moment from 'moment';
 import SpinnerIcon from "../../../components/Loading/Spiner";
 import * as celebrationAndBirthday from "../../../servives/celebration";
 import * as User from "../../../servives/user";
+import * as Event from "../../../servives/event"
 
 
 class HomePage extends React.Component{
@@ -18,16 +19,27 @@ class HomePage extends React.Component{
             file: false,
             percent: 0,
             loaded: false,
-            dataCelebration: []
+            dataCelebration: [],
+            dataCurentEvent: []
         }
     }
 
     componentDidMount(){
         this.onLoad();
         this.getDataCelebration();
+        this.getEvent()
+
     }
+
+    getEvent = async () => {
+        const currentEvent = await (await Event.getCurrentEvent()).json();
+
+        this.setState({dataCurentEvent: currentEvent})
+    }
+
     getDataCelebration = async () => {
         try {
+
             //Celebration
             const currentData = []
             const response =  await (await celebrationAndBirthday.celebration('2023')).json();
@@ -146,11 +158,18 @@ class HomePage extends React.Component{
                     </div>
                 )}
                 <div>
-                    <h1>Tir du jour</h1>
-                    <p>carousel</p>
+                    <h1>Tir du jour </h1>
+                    <Carousel className='text-center' controls={false} indicators={false}>
+                        {this.state.dataCurentEvent.length > 0 ? this.state.dataCurentEvent.map((Event, key) => (
+                            <Carousel.Item key={key}>
+                                <h1>{Event.nameCity}</h1>
+                                <p>{Event.Type}</p>
+                            </Carousel.Item>
+                        )): <Carousel.Item key={1}><p>Aucun tir aujourd'hui</p></Carousel.Item>}
+                    </Carousel>
                 </div>
                 <div>
-                    {this.state.dataCelebration && <>
+                    {this.state.dataCelebration.length > 0 && <>
                         <h1>Fête et anniversaire du jour</h1>
                         <Carousel className='text-center' controls={false} indicators={false}>
                             {this.state.dataCelebration.map(( text ) => (
