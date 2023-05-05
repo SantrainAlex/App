@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Login from "./views/mobile/loginAndRegister/Login";
 import Register from "./views/mobile/loginAndRegister/Register";
 import Index from "./views/mobile";
+import LstEvent from "./views/mobile/lstEvent";
 import HomePage from "./views/mobile/homePage/HomePage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -31,6 +32,10 @@ root.render(
             <Route
                 path="/HomePage"
                 element={<HomePage/>}
+            />
+            <Route
+                path="/lstEvent"
+                element={<LstEvent/>}
             />
           </Routes>
   </BrowserRouter>
