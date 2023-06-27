@@ -1,3 +1,3 @@
-export const getCurrentEvent = () => fetch(`https://api-lkqs.onrender.com/currentEvent`);
+export const getCurrentEvent = () => fetch(`http://www.saint-sebastien-ssc.fr:3001/currentEvent`);
 
-export const getLstEvent = () => fetch(`https://api-lkqs.onrender.com/allEvents`);
+export const getLstEvent = () => fetch(`http://www.saint-sebastien-ssc.fr:3001/allEvents`);
