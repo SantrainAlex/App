@@ -1,3 +1,5 @@
-export const getCurrentEvent = () => fetch(`http://www.saint-sebastien-ssc.fr:3001/currentEvent`);
+const  SERVER_URL  = process.env.REACT_APP_SERVER_URL;
 
-export const getLstEvent = () => fetch(`http://www.saint-sebastien-ssc.fr:3001/allEvents`);
+export const getCurrentEvent = () => fetch(`${SERVER_URL}/currentEvent`);
+
+export const getLstEvent = () => fetch(`${SERVER_URL}/allEvents`);
