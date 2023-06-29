@@ -195,7 +195,7 @@ class HomePage extends React.Component{
                 </div>
                 <div  className='allBtn '>
                     <Row >
-                        <Col className='col-6'>
+                        <Col>
                             <input
                                 id="file-input"
                                 multiple
@@ -208,7 +208,9 @@ class HomePage extends React.Component{
                                 Sélectionner une photo de ta galery
                             </button>
                         </Col>
-                        <Col className='col-6'>
+                    </Row>
+                    <Row>
+                        <Col className="mt-1">
                             <button onClick={this.capturePhoto}>prend une photo</button>
                         </Col>
                     </Row>
