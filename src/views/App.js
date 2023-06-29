@@ -14,13 +14,7 @@ const RedirectToLogin = () => {
         return null
 }
 
-const RedirectToHome = () => {
-    const navigate = useNavigate()
-    useEffect(()=>{
-        navigate('/HomePage')
-    }, [navigate])
-    return null
-}
+
 const App = () => {
     const isAuthenticated = localStorage.getItem('currentUser');
 
@@ -34,11 +28,11 @@ const App = () => {
             />
             <Route
                 path="/Login"
-                element={!isAuthenticated ? <Login/>: <RedirectToHome/>}
+                element={<Login/>}
             />
             <Route
                 path="/Register"
-                element={!isAuthenticated ?<Register/>: <RedirectToHome/>}
+                element={<Register/>}
             />
             <Route
                 path="/HomePage"
