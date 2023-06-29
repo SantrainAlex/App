@@ -4,41 +4,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 // Import Main styles for this application
 import './scss/style.scss';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.css';
-import Login from "./views/mobile/loginAndRegister/Login";
-import Register from "./views/mobile/loginAndRegister/Register";
-import Index from "./views/mobile";
-import LstEvent from "./views/mobile/lstEvent";
-import HomePage from "./views/mobile/homePage/HomePage";
+import App from './views/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 root.render(
-  <BrowserRouter>
-          <Routes>
-            <Route
-                path="/"
-                element={<Index/>}
-            />
-            <Route
-                path="/Login"
-                element={<Login/>}
-            />
-            <Route
-                path="/Register"
-                element={<Register/>}
-            />
-            <Route
-                path="/HomePage"
-                element={<HomePage/>}
-            />
-            <Route
-                path="/lstEvent"
-                element={<LstEvent/>}
-            />
-          </Routes>
-  </BrowserRouter>
+  <App/>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import * as User from "../../../servives/user";
 import SpinnerIcon from "../../../components/Loading/Spiner";
 
-const Login = () => {
+const Login = (props) => {
     const navigate = useNavigate();
     const [values, setValues] = useState({email: '',password: ''});
     const [loaded, setLoaded] = useState(false)
@@ -17,24 +17,35 @@ const Login = () => {
     };
 
 
-    const handleSubmit =  (e) =>{
-        setLoaded(true);
-        e.preventDefault()
-        const getData =
-        {
-            "email": `${values.email}`,
-            "password": `${values.password}`
-        }
-        User.connection(getData)
-            .then(() => {
-                setLoaded(false)
-                     navigate('/HomePage');
+    const handleSubmit = async(e) =>{
+        if(values.email && values.password){
+            
+            setLoaded(true);
+            e.preventDefault()
+            const getData =
+            {
+                "email": `${values.email}`,
+                "password": `${values.password}`
+            }
+            try{
+                const response = await User.connection(getData);
+                const data = await response.json();
+
+                if(response.ok){
+                    setLoaded(false);
+                   
+                    // Après l'authentification réussie
+                    localStorage.setItem('currentUser', JSON.stringify(data));
+                    navigate('/HomePage')
+                }else if(!response.ok){
+                    setLoaded(false);
+                    alert(data)
                 }
-            )
-            .catch(error => {
-                setLoaded(false)
-                alert('Mot de passe ou email incorrect')
-            })
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }else{alert('email ou mot de passe pas remplie')}
     }
         return(
             <div>

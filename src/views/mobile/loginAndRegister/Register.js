@@ -5,7 +5,7 @@ import * as User from "../../../servives/user";
 import {useNavigate} from "react-router-dom";
 import SpinnerIcon from "../../../components/Loading/Spiner";
 
-const Register = () => {
+const Register = (props) => {
     const navigate = useNavigate();
     const [values, setValues] = useState({
         firstName: '',
@@ -31,7 +31,7 @@ const Register = () => {
         setConfirmPassword(event.target.value);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         setLoaded(true);
         event.preventDefault();
         const form = event.currentTarget;
@@ -39,10 +39,13 @@ const Register = () => {
         setTooShort(false);
 
         if (values.password.length <= 9 || confirmPassword.length <= 9) {
+            setLoaded(false)
+            setTooShort(true);
             setPasswordNotIdentical(true);
             event.stopPropagation();
         } else if( !values.password.startsWith(confirmPassword) && !confirmPassword.endsWith(values.password)){
-            setTooShort(true);
+            setLoaded(false);
+            setPasswordNotIdentical(true);
             event.stopPropagation();
         }else if(form.checkValidity() === false) {
             event.stopPropagation();
@@ -55,15 +58,19 @@ const Register = () => {
                 "email": `${values.email}`,
                 "password": `${values.password}`,
             }
-            User.create(getData)
-                .then(() => {
-                    setLoaded(false)
-                    navigate('/HomePage');
-                })
-                .catch(error => {
-                    setLoaded(false)
-                    alert(error)
-                })
+            const response = await User.create(getData)
+            const data = await response.json()
+
+            if(response.ok){
+                setLoaded(false);
+                
+                // Après l'authentification réussie
+                localStorage.setItem('currentUser', JSON.stringify(data));
+                navigate('/HomePage')
+            }else if(!response.ok){
+                setLoaded(false);
+                alert(data)
+            }
         }
         form.classList.add('was-validated');
     };
