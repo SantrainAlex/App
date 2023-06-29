@@ -32,6 +32,7 @@ const Login = (props) => {
                 const data = await response.json();
 
                 if(response.ok){
+                    props.isConnected();
                     setLoaded(false);
                    
                     // Après l'authentification réussie

@@ -1,4 +1,4 @@
-import {  useEffect } from "react"
+import {  useEffect, useState } from "react"
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./mobile/loginAndRegister/Login";
 import Register from "./mobile/loginAndRegister/Register";
@@ -22,7 +22,9 @@ const RedirectToHome = () => {
     return null
 }
 const App = () => {
-    const isAuthenticated = localStorage.getItem('currentUser');
+    const isAuthenticated =  localStorage.getItem('currentUser');
+    const [isConnected, setIsConnected] = useState(false)
+    
 
     return(
         <BrowserRouter>
@@ -34,7 +36,7 @@ const App = () => {
             />
             <Route
                 path="/Login"
-                element={!isAuthenticated ? <Login/>: <RedirectToHome/>}
+                element={<Login isConnected={() => {setIsConnected(true)}}/>}
             />
             <Route
                 path="/Register"
@@ -42,11 +44,11 @@ const App = () => {
             />
             <Route
                 path="/HomePage"
-                element={isAuthenticated ? <HomePage/>: <RedirectToLogin/>}
+                element={(isAuthenticated|| isConnected)  ? <HomePage/>: <RedirectToLogin/>}
             />
             <Route
                 path="/lstEvent"
-                element={isAuthenticated ? <LstEvent/>: <RedirectToLogin/>}
+                element={(isAuthenticated|| isConnected)  ?  <LstEvent/>: <RedirectToLogin/>}
             />
           </Routes>
         </BrowserRouter>
