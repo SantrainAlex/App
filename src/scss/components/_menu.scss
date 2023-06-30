@@ -1,0 +1,23 @@
+#menu {
+    position: fixed;
+    bottom: 2px;
+    right: 2px;
+    
+    #selectOne{
+        position: absolute;
+        bottom: 8em;
+        width: max-content;
+        right: 0.2em;
+    }
+
+    #selectTwo {
+        position: absolute;
+        bottom: 4em;
+        right: 3em;
+        width: max-content;
+    }
+
+    #selectThree {
+        margin-right: 1em;
+    }
+}

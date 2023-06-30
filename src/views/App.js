@@ -8,9 +8,11 @@ import HomePage from "./mobile/homePage/HomePage";
 
 const RedirectToLogin = () => {
         const navigate = useNavigate()
+
         useEffect(()=>{
             navigate('/Login')
         }, [navigate])
+        
         return null
 }
 

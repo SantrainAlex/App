@@ -8,11 +8,12 @@ import moment from 'moment';
 import SpinnerIcon from "../../../components/Loading/Spiner";
 import * as celebrationAndBirthday from "../../../servives/celebration";
 import * as User from "../../../servives/user";
-import * as Event from "../../../servives/event"
+import * as Event from "../../../servives/event";
+import Menu from "../../../components/menu";
 
 
 class HomePage extends React.Component{
-    constructor(props) {
+    constructor() {
         super();
         this.state = {
             imageUrls: [],
@@ -214,6 +215,7 @@ class HomePage extends React.Component{
                             <button onClick={this.capturePhoto}>prend une photo</button>
                         </Col>
                     </Row>
+                    <Menu/>
                 </div>
 
             </div>
